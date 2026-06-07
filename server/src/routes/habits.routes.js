@@ -10,6 +10,7 @@ const completionLimiter = rateLimit({
   keyGenerator: (req) => String(req.user.id),
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
   message: {
     error: "You are sending requests too frequently. Please wait a moment.",
   },
