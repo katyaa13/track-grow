@@ -12,7 +12,9 @@ export function useAuth() {
     if (!token) return;
     getMe()
       .then((res) => setUser(res.data.data))
-      .catch(() => storeLogout());
+      .catch((err) => {
+        if (err?.response?.status === 401) storeLogout();
+      });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const register = useCallback(

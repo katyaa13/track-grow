@@ -34,6 +34,10 @@ export function useCounterState(habit, completed, progressValue, onComplete, onU
   const initCount = progressValue != null ? Number(progressValue) : completed ? target : 0;
   const [count, setCount] = useState(initCount);
   const firedRef = useRef(completed);
+  const debounceRef = useRef(null);
+  const pendingRef = useRef(null);
+  const onProgressRef = useRef(onProgress);
+  useEffect(() => { onProgressRef.current = onProgress; });
 
   useEffect(() => {
     const next = progressValue != null ? Number(progressValue) : completed ? target : 0;
@@ -41,26 +45,47 @@ export function useCounterState(habit, completed, progressValue, onComplete, onU
     firedRef.current = completed;
   }, [progressValue, completed]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const inc = async () => {
+  useEffect(() => {
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, []);
+
+  const scheduleSave = (value) => {
+    pendingRef.current = value;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      onProgressRef.current(pendingRef.current);
+      debounceRef.current = null;
+      pendingRef.current = null;
+    }, 500);
+  };
+
+  const flushPending = () => {
+    if (debounceRef.current) { clearTimeout(debounceRef.current); debounceRef.current = null; }
+    pendingRef.current = null;
+  };
+
+  const inc = () => {
     const next = count + 1;
     setCount(next);
     if (next < target) {
-      await onProgress(next);
+      scheduleSave(next);
     } else {
+      flushPending();
       if (!firedRef.current) firedRef.current = true;
       onComplete(next);
     }
   };
 
-  const dec = async () => {
+  const dec = () => {
     if (count <= 0) return;
     const next = count - 1;
     setCount(next);
     if (next < target && firedRef.current) {
+      flushPending();
       firedRef.current = false;
       onUncomplete(next);
     } else {
-      await onProgress(next);
+      scheduleSave(next);
     }
   };
 

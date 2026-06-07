@@ -13,7 +13,7 @@ const achievementsRoutes = require("./routes/achievements.routes");
 
 const app = express();
 
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 
 // Security headers
 app.use(helmet());
