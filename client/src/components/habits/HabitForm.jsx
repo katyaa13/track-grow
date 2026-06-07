@@ -42,7 +42,7 @@ const EMOJIS = [
 ];
 
 const NAME_MAX = 20;
-const COUNTER_MAX = 86400;
+const COUNTER_MAX = 1000;
 const TIMER_HR_MAX = 23;
 
 function secToHMS(sec) {

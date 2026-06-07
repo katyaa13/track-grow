@@ -38,14 +38,17 @@ const VALID_EMOJIS = [
 ];
 const NAME_MAX = 20;
 
+const COUNTER_MAX = 1000;
+const TIMER_MAX = 86400;
+
 function parseTargetValue(tracking_type, target_value) {
   if (tracking_type === "checkbox") return { value: null, error: null };
   const n = Number(target_value);
-  if (!target_value || !Number.isInteger(n) || n <= 0 || n > 86400) {
+  const max = tracking_type === "timer" ? TIMER_MAX : COUNTER_MAX;
+  if (!target_value || !Number.isInteger(n) || n <= 0 || n > max) {
     return {
       value: null,
-      error:
-        "target_value must be a positive integer for timer and counter habits (max 86400)",
+      error: `target_value must be a positive integer (max ${max} for ${tracking_type} habits)`,
     };
   }
   return { value: n, error: null };
