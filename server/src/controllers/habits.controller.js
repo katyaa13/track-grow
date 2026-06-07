@@ -74,6 +74,7 @@ async function createHabit(req, res, next) {
       emoji,
       color,
       created_at,
+      today: clientToday,
     } = req.body;
 
     if (!name || !tracking_type || !frequency) {
@@ -117,7 +118,8 @@ async function createHabit(req, res, next) {
     if (tvError) return res.status(400).json({ error: tvError });
 
     const _now = new Date();
-    const today = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, "0")}-${String(_now.getDate()).padStart(2, "0")}`;
+    const serverToday = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, "0")}-${String(_now.getDate()).padStart(2, "0")}`;
+    const today = clientToday || serverToday;
     const effectiveCreatedAt =
       created_at && created_at > today ? today : (created_at ?? null);
 

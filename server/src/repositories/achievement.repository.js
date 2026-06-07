@@ -1,9 +1,11 @@
 const { pool } = require("../config/db");
 const { POINTS_BY_DIFFICULTY } = require("../config/achievements");
 
-async function fetchConditions(userId) {
-  const _now = new Date();
-  const today = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, "0")}-${String(_now.getDate()).padStart(2, "0")}`;
+async function fetchConditions(userId, today) {
+  if (!today) {
+    const _now = new Date();
+    today = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, "0")}-${String(_now.getDate()).padStart(2, "0")}`;
+  }
 
   const {
     rows: [r],

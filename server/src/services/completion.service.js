@@ -128,7 +128,7 @@ async function complete(userId, habitId, value, date, today) {
     await client.query("COMMIT");
 
     const achieveResult = await achievementService
-      .checkAndUnlock(userId)
+      .checkAndUnlock(userId, today)
       .catch(() => ({ newly_unlocked: [], total_xp: null }));
 
     return {
@@ -241,7 +241,7 @@ async function undo(userId, habitId, date, newValue, today) {
     await client.query("COMMIT");
 
     const relockResult = await achievementService
-      .recheckAndRelock(userId)
+      .recheckAndRelock(userId, today)
       .catch((err) => {
         console.error("recheckAndRelock failed:", err);
         return { total_xp: null };

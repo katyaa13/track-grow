@@ -178,6 +178,7 @@ export default function HabitForm({ onClose }) {
         await create({
           ...result.payload,
           created_at: selectedDate > today ? today : selectedDate,
+          today,
         });
       }
       onClose();

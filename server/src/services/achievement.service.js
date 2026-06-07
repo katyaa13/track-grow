@@ -2,11 +2,11 @@ const achievementRepo = require("../repositories/achievement.repository");
 const userRepo = require("../repositories/user.repository");
 const { POINTS_BY_DIFFICULTY } = require("../config/achievements");
 
-async function checkAndUnlock(userId) {
+async function checkAndUnlock(userId, today) {
   const locked = await achievementRepo.findLocked(userId);
   if (!locked.length) return { newly_unlocked: [], total_xp: null };
 
-  const conditions = await achievementRepo.fetchConditions(userId);
+  const conditions = await achievementRepo.fetchConditions(userId, today);
 
   const toUnlock = locked.filter((a) => conditions[a.code]);
   if (!toUnlock.length) return { newly_unlocked: [], total_xp: null };
@@ -33,11 +33,11 @@ async function checkAndUnlock(userId) {
   return { newly_unlocked, total_xp };
 }
 
-async function recheckAndRelock(userId) {
+async function recheckAndRelock(userId, today) {
   const unlocked = await achievementRepo.findUnlocked(userId);
   if (!unlocked.length) return { total_xp: null };
 
-  const conditions = await achievementRepo.fetchConditions(userId);
+  const conditions = await achievementRepo.fetchConditions(userId, today);
 
   const toRelock = unlocked.filter(
     (u) => u.code in conditions && !conditions[u.code],
