@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS plants (
+  id SERIAL PRIMARY KEY,
+  habit_id INTEGER NOT NULL UNIQUE REFERENCES habits (id) ON DELETE CASCADE,
+  level INTEGER NOT NULL DEFAULT 1,
+  status VARCHAR(20) NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'wilted', 'dead')),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

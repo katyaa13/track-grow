@@ -1,0 +1,227 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.loading {
+  color: var(--color-text-neutral);
+  padding: 48px;
+  text-align: center;
+}
+
+.filterBar {
+  padding: 0px 20px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  background: var(--color-surface-green);
+  border: 1px solid var(--color-border);
+}
+
+.mainGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 23px;
+  padding: 12px 0;
+  align-items: start;
+}
+
+.section {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-card);
+  padding: 16px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 400px;
+  flex: 1;
+  box-shadow: var(--shadow-sm);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 400px;
+  flex: 1;
+}
+
+.sectionTitle,
+.subTitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-size-title);
+  line-height: 29px;
+  color: var(--color-text-darkest);
+  text-align: center;
+  margin: 0;
+}
+
+.subTitle {
+  font-size: var(--font-size-subtitle);
+}
+
+.streakRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.streakList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.streakListItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  width: 100%;
+  height: 34px;
+
+  border: 1.5px solid var(--streak-border, var(--color-input-border));
+  border-radius: var(--radius-input);
+  box-sizing: border-box;
+
+  transition: border-color 0.2s ease;
+}
+
+.streakLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.streakRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.streakNum {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-size-label);
+  line-height: 24px;
+  color: #e66400;
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.streakHabit {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  line-height: 15px;
+  color: var(--color-text-dark);
+  white-space: nowrap;
+}
+
+.streakPlant {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  line-height: 15px;
+  color: var(--color-primary-dark);
+  text-align: right;
+}
+
+.streakPlantHint {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--font-size-xxs);
+  line-height: 12px;
+  color: var(--color-text-neutral);
+  text-align: right;
+}
+
+.statsCard {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  row-gap: 10px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  width: 139px;
+}
+
+.statItem span {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-size-xs);
+  line-height: 15px;
+  text-align: center;
+  color: var(--color-text-dark);
+  width: 139px;
+}
+
+.statRing {
+  width: 69px;
+  height: 69px;
+  border-radius: var(--radius-full);
+  border: 2.44px solid var(--color-primary-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 29px;
+  color: var(--color-primary-accent);
+}
+
+@media (max-width: 900px) {
+  .mainGrid {
+    flex-direction: column;
+  }
+
+  .section {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .rightColumn {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .streakListItem {
+    width: 100%;
+  }
+
+  .streakList {
+    padding: 0 12px;
+  }
+
+  .filterBar {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 475px) {
+  .streakPlantHint {
+    display: none;
+  }
+}

@@ -1,0 +1,102 @@
+.wrapper {
+  border-radius: var(--radius-card);
+  padding: 16px 4px 8px;
+  box-shadow: var(--shadow-sm);
+  background: var(--color-surface-green);
+  border: 1px solid var(--color-border);
+}
+
+.monthRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.month {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-darkest);
+}
+
+.scrollRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arrow {
+  width: 28px;
+  height: 48px;
+  flex-shrink: 0;
+  background: none;
+  color: var(--color-text-gray);
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s;
+  cursor: pointer;
+}
+.arrow:hover {
+  color: var(--color-text-dark);
+}
+
+.days {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  border-radius: var(--radius-xs);
+  min-width: 44px;
+  transition: background 0.15s;
+  cursor: pointer;
+  background: none;
+  flex-shrink: 0;
+}
+.day:hover {
+  background: var(--color-hover-bg);
+}
+
+.dayName {
+  font-weight: 400;
+  font-size: var(--font-size-xs);
+  line-height: 15px;
+  text-align: center;
+  color: var(--color-text-gray);
+}
+
+.dayNum {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text-dark);
+}
+
+.today .dayName {
+  color: var(--color-primary-dark);
+}
+.today .dayNum {
+  color: var(--color-primary-dark);
+}
+.day.today {
+  background: var(--color-active-bg);
+}
+
+.selected {
+  background: var(--color-primary-dark) !important;
+  border-radius: var(--radius-xs);
+}
+.selected .dayName,
+.selected .dayNum {
+  color: #fff !important;
+}

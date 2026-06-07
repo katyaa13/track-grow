@@ -1,0 +1,49 @@
+.tooltip {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--tooltip-border, var(--color-border));
+  padding: 6px 15px;
+  gap: 4px;
+  min-width: 190px;
+  min-height: 94px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: var(--shadow-tooltip);
+}
+
+.name {
+  font-family: var(--font-family);
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  line-height: 19px;
+  color: var(--color-text-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.level {
+  font-family: var(--font-family);
+  font-size: var(--font-size-label);
+  font-weight: 500;
+  line-height: 17px;
+  color: var(--color-text-dark);
+}
+
+.info {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  line-height: 15px;
+  color: var(--color-text-dark);
+}
+
+.hint {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xxs);
+  font-weight: 500;
+  line-height: 15px;
+  color: var(--color-error);
+}

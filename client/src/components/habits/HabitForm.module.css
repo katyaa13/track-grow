@@ -1,0 +1,236 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.sectionLabel {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-size-xs);
+  line-height: 15px;
+  color: var(--color-text-gray);
+  text-transform: uppercase;
+}
+
+.typeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.typeBtn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  width: 100%;
+  height: 37px;
+  background: var(--color-card);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-input);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.typeBtn:hover {
+  border-color: var(--color-primary-accent);
+}
+
+.typeActive {
+  background: var(--color-active-bg) !important;
+  border: 1px solid var(--color-primary-accent) !important;
+}
+
+.typeBtnLabel {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-label);
+  line-height: 17px;
+  color: var(--color-text-dark);
+  text-align: left;
+}
+
+.typeBtnHint {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  line-height: 15px;
+  color: var(--color-text-neutral);
+  text-align: right;
+}
+
+.timerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.timerField {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 10px 8px;
+  width: 60px;
+  height: 37px;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-input);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-label);
+  line-height: 17px;
+  color: var(--color-text-dark);
+  background: var(--color-card);
+  outline: none;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+.timerField:focus {
+  border-color: var(--color-primary-accent);
+}
+.timerField::placeholder {
+  color: var(--color-text-neutral);
+}
+
+.timerUnit {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-gray);
+  min-width: 24px;
+}
+
+.pillRow {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  height: 32px;
+  border: 1px solid var(--color-primary-dark);
+  border-radius: 20px;
+  background: transparent;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-tiny);
+  line-height: 12px;
+  text-align: center;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.pill:hover {
+  background: rgba(40, 101, 17, 0.08);
+}
+
+.pillActive {
+  background: var(--color-primary-dark);
+  color: var(--color-card);
+}
+
+.pillActive:hover {
+  background: var(--color-primary-dark-hover);
+  color: var(--color-card);
+}
+
+.emojiGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.emojiBtn {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  background: var(--color-card);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-xxs);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.emojiBtn:hover {
+  border-color: var(--color-primary-accent);
+}
+
+.emojiActive {
+  background: var(--color-active-bg);
+  border: 1px solid var(--color-primary-accent);
+}
+
+.colorGrid {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.colorSwatch {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xxs);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    border-color 0.15s;
+}
+.colorSwatch:hover {
+  transform: scale(1.1);
+}
+
+.colorActive {
+  border-color: var(--color-text-darkest) !important;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .typeBtnLabel {
+    font-size: var(--font-size-xs);
+  }
+
+  .typeBtnHint {
+    font-size: var(--font-size-tiny);
+  }
+
+  .sectionLabel {
+    font-size: var(--font-size-xxs);
+  }
+}

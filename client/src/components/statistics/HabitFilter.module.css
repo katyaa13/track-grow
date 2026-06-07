@@ -1,0 +1,51 @@
+.bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0px;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 10px;
+  height: 31px;
+
+  background: var(--color-card);
+  border-radius: var(--radius-xxs);
+
+  border: 1.5px solid var(--habit-color, --color-border-dark);
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  text-align: center;
+
+  color: var(--color-text-darkest);
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.tab:hover {
+  background: color-mix(in srgb, var(--habit-color) 15%, white);
+  border-color: var(--habit-color);
+}
+
+.active {
+  background: var(--habit-color);
+  color: #fff;
+  border-color: var(--habit-color);
+}
+.active:hover {
+  background: color-mix(in srgb, var(--habit-color) 85%, black);
+}

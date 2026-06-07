@@ -1,0 +1,81 @@
+.badge {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 3px;
+  width: 128px;
+  min-height: 196px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  cursor: default;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s;
+}
+.badge:hover {
+  transform: translateY(-3px);
+}
+
+.img {
+  width: 99px;
+  height: 99px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.img--rare {
+  width: 108px;
+  height: 108px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-size-label);
+  line-height: 17px;
+  text-align: center;
+  color: var(--color-text-dark);
+  width: 108px;
+}
+
+.desc {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--font-size-tiny);
+  line-height: 12px;
+  text-align: center;
+  color: var(--color-text-gray);
+  width: 108px;
+}
+
+.reward--unlocked {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-tiny);
+  line-height: 12px;
+  text-align: center;
+  color: var(--color-primary-dark);
+  width: 108px;
+}
+
+.reward--locked {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-tiny);
+  line-height: 12px;
+  text-align: center;
+  color: var(--color-text-gray);
+  width: 108px;
+}
+
+.progress {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-tiny);
+  line-height: 12px;
+  text-align: center;
+  color: var(--color-text-neutral);
+  width: 108px;
+}

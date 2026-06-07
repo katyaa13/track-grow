@@ -1,0 +1,37 @@
+.garden {
+  --plant-w: 125px;
+  --col-gap: 24px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--plant-w), 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 0;
+  align-items: end;
+  padding: 20px;
+  width: 100%;
+  min-width: 0;
+}
+
+.garden > :not(.shelfBoard) {
+  height: 173px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0;
+}
+
+.shelfBoard {
+  grid-column: 1 / -1;
+  height: 10px;
+  background: #cfa773;
+  border: 1px solid #b59366;
+  border-radius: var(--radius-xxs);
+  box-shadow: var(--shadow-shelf);
+  margin-bottom: 16px;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px 0;
+  color: var(--color-text-muted);
+}

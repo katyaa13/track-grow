@@ -1,0 +1,58 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  flex-basis: 125px;
+  width: 125px;
+  height: 173px;
+  cursor: default;
+  padding: 0;
+}
+
+.potWrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.plantImg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none !important;
+  max-height: none;
+  object-fit: none;
+}
+
+.potEmoji {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-label);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* .wilted .plantImg { filter: saturate(0.5) brightness(0.9); }
+.dead .plantImg { filter: saturate(0.15) brightness(0.8); } */
+
+.tooltipWrap {
+  position: absolute;
+  top: calc(100% - 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.card:hover .tooltipWrap {
+  opacity: 1;
+  pointer-events: auto;
+}

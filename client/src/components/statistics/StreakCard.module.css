@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 150px;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  line-height: 19px;
+  text-align: center;
+  color: var(--color-text-dark);
+}
+
+.ring {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-card);
+  border: 3px solid var(--streak-color, var(--color-text-gray));
+}
+
+.value {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  color: var(--streak-color, var(--color-text-gray));
+}
+
+.habitName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--font-size-label);
+  line-height: 17px;
+  text-align: center;
+  color: var(--color-text-dark);
+  width: 100%;
+}

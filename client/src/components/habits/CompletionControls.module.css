@@ -1,0 +1,105 @@
+.circleBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--habit-color, var(--color-primary));
+  color: var(--habit-color, var(--color-primary));
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  cursor: pointer;
+}
+.circleBtn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.circleBtn img {
+  color: inherit;
+}
+
+.circleDone {
+  background: var(--habit-color, var(--color-primary));
+}
+
+.circleLocked {
+  background: var(--habit-color, var(--color-primary));
+  cursor: default;
+}
+
+.circleStat {
+  cursor: default;
+}
+
+.circleVal {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  line-height: 19px;
+  color: var(--habit-color, var(--color-text-secondary));
+}
+.circleDone .circleVal {
+  color: var(--color-card);
+}
+
+.counterBtns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.counterBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--habit-color, var(--color-border));
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--habit-color, var(--color-text-secondary));
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.counterBtn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+}
+.counterBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.counterFrac {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  line-height: 19px;
+  color: var(--habit-color, var(--color-text-muted));
+  min-width: 36px;
+  text-align: center;
+}
+
+.timerWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.timerVal {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  line-height: 19px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-gray);
+  min-width: 48px;
+  text-align: right;
+}
