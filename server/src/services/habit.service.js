@@ -81,14 +81,6 @@ async function updateProgress(userId, habitId, value, date) {
     throw e;
   }
 
-  const now = new Date();
-  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-  if (d > today) {
-    const e = new Error("Cannot record progress for a future date");
-    e.status = 400;
-    throw e;
-  }
-
   const existing = await periodRepo.findByPeriod(habitId, d, habit.frequency);
   if (existing?.is_completed && (habit.target_value == null || value < habit.target_value)) {
     return existing;
@@ -117,13 +109,6 @@ async function startTimer(userId, habitId, date) {
   }
 
   const d = date || new Date().toISOString().slice(0, 10);
-  const now = new Date();
-  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-  if (d > today) {
-    const e = new Error("Cannot start timer for a future date");
-    e.status = 400;
-    throw e;
-  }
 
   const row = await periodRepo.startTimer(habitId, d, habit.frequency);
   return {
