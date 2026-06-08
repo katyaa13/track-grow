@@ -119,7 +119,6 @@ export function useTimerState(habit, selectedDate, completed, completedValue, pr
   const completedRef = useRef(completed);
   completedRef.current = completed;
 
-  // Sync display from server data when not actively running
   useEffect(() => {
     if (runningRef.current) return;
     const stored = progressValue != null ? Number(progressValue) : completed ? Number(completedValue ?? 0) : 0;
@@ -144,7 +143,6 @@ export function useTimerState(habit, selectedDate, completed, completedValue, pr
     return () => clearInterval(id);
   }, [running]);  
 
-  // Snap display to correct value when the tab becomes visible
   useEffect(() => {
     const onVisible = () => {
       if (!document.hidden && timerStartedAtMsRef.current != null) {
@@ -179,11 +177,11 @@ export function useTimerState(habit, selectedDate, completed, completedValue, pr
     } else {
       const result = await onStart?.();
       if (!result) return;
-      const { timer_started_at, progress_value } = result;
+      const { progress_value } = result;
       storedProgressRef.current = progress_value != null ? Number(progress_value) : 0;
-      timerStartedAtMsRef.current = new Date(timer_started_at).getTime();
+      timerStartedAtMsRef.current = Date.now();
       runningRef.current = true;
-      setElapsed(getElapsed());
+      setElapsed(storedProgressRef.current);
       setRunning(true);
     }
   };

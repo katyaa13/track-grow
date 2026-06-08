@@ -144,4 +144,7 @@
     padding: 32px 24px;
     min-height: auto;
   }
+  .textWrapper {
+    margin-bottom: 20px;
+  }
 }
