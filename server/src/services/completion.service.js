@@ -29,6 +29,10 @@ async function complete(userId, habitId, value, date, today) {
   }
 
   const alreadyDone = existing?.is_completed === true;
+  const effectiveValue =
+    habit.tracking_type === "timer" && value != null
+      ? Math.min(Number(value), 86400)
+      : value;
 
   if (alreadyDone) {
     if (habit.tracking_type === "checkbox") {
@@ -36,7 +40,7 @@ async function complete(userId, habitId, value, date, today) {
       e.status = 409;
       throw e;
     }
-    await periodRepo.updateValue(existing.id, value);
+    await periodRepo.updateValue(existing.id, effectiveValue);
     const user = await userRepo.findById(userId);
     return {
       drops_balance: user.drops_balance,
@@ -56,14 +60,14 @@ async function complete(userId, habitId, value, date, today) {
             SET value = $1, recorded_at = COALESCE($3::date + INTERVAL '12 hours', NOW()),
                 is_completed = TRUE, timer_started_at = NULL
           WHERE id = $2`,
-        [value, existing.id, effectiveDateParam],
+        [effectiveValue, existing.id, effectiveDateParam],
       );
     } else {
       const periodStart = getPeriodStart(d, habit.frequency);
       await client.query(
         `INSERT INTO habit_periods (habit_id, period_start, recorded_at, value, is_completed)
          VALUES ($1, $2, COALESCE($3::date + INTERVAL '12 hours', NOW()), $4, TRUE)`,
-        [habitId, periodStart, effectiveDateParam, value],
+        [habitId, periodStart, effectiveDateParam, effectiveValue],
       );
     }
 
@@ -117,8 +121,8 @@ async function complete(userId, habitId, value, date, today) {
 
       await client.query(
         `UPDATE plants
-            SET level      = $1,
-                status     = $2,
+            SET level = $1,
+                status = $2,
                 updated_at = COALESCE($4::date + INTERVAL '12 hours', NOW())
           WHERE id = $3`,
         [newLevel, newStatus, plant.id, effectiveDateParam],

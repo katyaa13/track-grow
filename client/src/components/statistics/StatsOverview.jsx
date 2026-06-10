@@ -159,7 +159,9 @@ export default function StatsOverview() {
                   <br />
                   progress
                 </span>
-                <div className={styles.statRing}>{stats?.current_completion_rate ?? 0}%</div>
+                <div className={`${styles.statRing}${(stats?.current_completion_rate ?? 0) > 999 ? ` ${styles.statRingSmall}` : ""}`}>
+                  {stats?.current_completion_rate ?? 0}%
+                </div>
               </div>
             </div>
           </section>

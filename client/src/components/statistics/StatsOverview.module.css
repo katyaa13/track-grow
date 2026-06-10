@@ -192,6 +192,11 @@
   color: var(--color-primary-accent);
 }
 
+.statRingSmall {
+  font-size: 15px;
+  line-height: 18px;
+}
+
 @media (max-width: 900px) {
   .mainGrid {
     flex-direction: column;

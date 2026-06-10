@@ -86,13 +86,14 @@ async function updateProgress(userId, habitId, value, date) {
     return existing;
   }
 
+  const clampedValue = habit.tracking_type === "timer" ? Math.min(value, 86400) : value;
   const updated = await periodRepo.upsertValue(
     habitId,
     d,
-    value,
+    clampedValue,
     habit.frequency,
   );
-  return updated || { value };
+  return updated || { value: clampedValue };
 }
 
 async function startTimer(userId, habitId, date) {

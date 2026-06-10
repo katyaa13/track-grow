@@ -94,6 +94,8 @@ export function useCounterState(habit, completed, progressValue, onComplete, onU
 
 // TIMER STATE
 
+const TIMER_MAX_SEC = 86400;
+
 export function useTimerState(habit, selectedDate, completed, completedValue, progressValue, timerStartedAt, onStart, onComplete, onProgress) {
   const targetSec = habit.target_value || 1800;
 
@@ -113,7 +115,7 @@ export function useTimerState(habit, selectedDate, completed, completedValue, pr
   };
 
   const initRunning = timerStartedAt != null;
-  const [elapsed, setElapsed] = useState(getElapsed);
+  const [elapsed, setElapsed] = useState(() => Math.min(getElapsed(), TIMER_MAX_SEC));
   const [running, setRunning] = useState(initRunning);
   const runningRef = useRef(initRunning);
   const completedRef = useRef(completed);
@@ -138,15 +140,17 @@ export function useTimerState(habit, selectedDate, completed, completedValue, pr
     if (!running) return;
     const id = setInterval(() => {
       if (!runningRef.current) return;
-      setElapsed(getElapsed());
+      const e = Math.min(getElapsed(), TIMER_MAX_SEC);
+      setElapsed(e);
+      if (e >= TIMER_MAX_SEC) clearInterval(id);
     }, 1000);
     return () => clearInterval(id);
-  }, [running]);  
+  }, [running]);
 
   useEffect(() => {
     const onVisible = () => {
       if (!document.hidden && timerStartedAtMsRef.current != null) {
-        setElapsed(getElapsed());
+        setElapsed(Math.min(getElapsed(), TIMER_MAX_SEC));
       }
     };
     document.addEventListener("visibilitychange", onVisible);
@@ -164,7 +168,7 @@ export function useTimerState(habit, selectedDate, completed, completedValue, pr
 
   const handleToggle = async () => {
     if (running) {
-      const snapped = getElapsed();
+      const snapped = Math.min(getElapsed(), TIMER_MAX_SEC);
       runningRef.current = false;
       timerStartedAtMsRef.current = null;
       setRunning(false);
