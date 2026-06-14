@@ -4,6 +4,16 @@ const { validateDate } = require("../utils/validation");
 async function complete(req, res, next) {
   try {
     const { value, date, today } = req.body;
+
+    if (date !== undefined && date !== null) {
+      const dateError = validateDate(date);
+      if (dateError) return res.status(400).json({ error: dateError });
+    }
+
+    if (date && today && date > today) {
+      return res.status(400).json({ error: "Cannot complete a habit for a future date" });
+    }
+
     const result = await completionService.complete(
       req.user.id,
       req.params.id,
