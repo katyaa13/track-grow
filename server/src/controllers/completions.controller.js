@@ -8,10 +8,11 @@ async function complete(req, res, next) {
     if (date !== undefined && date !== null) {
       const dateError = validateDate(date);
       if (dateError) return res.status(400).json({ error: dateError });
-    }
 
-    if (date && today && date > today) {
-      return res.status(400).json({ error: "Cannot complete a habit for a future date" });
+      const maxAllowed = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+      if (date > maxAllowed) {
+        return res.status(400).json({ error: "Cannot complete a habit for a future date" });
+      }
     }
 
     const result = await completionService.complete(
