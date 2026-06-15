@@ -44,7 +44,7 @@ export default function HabitList() {
 
   const handleProgress = async (id, value) => {
     try {
-      await progress(id, value);
+      return await progress(id, value);
     } catch (err) {
       if (err?.response?.status === 429) {
         setError(err?.response?.data?.error || "You are sending requests too frequently. Please slow down.");

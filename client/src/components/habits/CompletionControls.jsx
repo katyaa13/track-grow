@@ -52,10 +52,15 @@ export function useCounterState(habit, completed, progressValue, onComplete, onU
   const scheduleSave = (value) => {
     pendingRef.current = value;
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      onProgressRef.current(pendingRef.current);
+    debounceRef.current = setTimeout(async () => {
+      const val = pendingRef.current;
       debounceRef.current = null;
       pendingRef.current = null;
+      try {
+        const res = await onProgressRef.current(val);
+        const serverValue = res?.data?.data?.value;
+        if (serverValue !== undefined) setCount(serverValue);
+      } catch (_) {}
     }, 500);
   };
 
